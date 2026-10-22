@@ -1,3 +1,7 @@
+# Maintained implementation
+
+See [repairs and current run instructions](docs/REPAIRS.md) for the corrected entry points and validation limits. Historical notebook outputs are retained as experiment records; they are not results of the corrected implementation.
+
 # Chicago Crime Analysis with Apache Spark
 
 Group coursework exploring Chicago crime records through cleaning, exploratory analysis, feature engineering and Spark MLlib classification.

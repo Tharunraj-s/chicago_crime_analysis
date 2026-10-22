@@ -1,3 +1,7 @@
+# Historical pre-repair review
+
+This records the initial upload review. See [REPAIRS.md](REPAIRS.md) for fixes now applied, current entry points and remaining validation requirements.
+
 # Reproduction review
 
 feature_analysis.ipynb and modelling.ipynb code were inspected. Large cleaning/EDA notebooks and the PDF/DBC were inventoried but not fully reviewed. No Spark job was executed.
