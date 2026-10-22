@@ -1,32 +1,70 @@
-# Maintained implementation
+# Chicago Crime Analysis
+**Apache Spark · Data cleaning · Exploratory analysis · MLlib**
 
-See [repairs and current run instructions](docs/REPAIRS.md) for the corrected entry points and validation limits. Historical notebook outputs are retained as experiment records; they are not results of the corrected implementation.
+A group coursework project analysing Chicago crime records through a distributed workflow: data cleaning, exploratory analysis, feature experiments and Random Forest incident classification. The repository includes the submitted report and a Databricks notebook archive.
 
-# Chicago Crime Analysis with Apache Spark
+[Group report](reports/group-21-report.pdf) · [Notebook guide](docs/NOTEBOOKS.md) · [Databricks export](databricks/chicago_clean.dbc) · [Demonstration guide](docs/DEMO.md)
 
-Group coursework exploring Chicago crime records through cleaning, exploratory analysis, feature engineering and Spark MLlib classification.
+## Work included
 
-## Notebook sequence
+- Cleaning and preparing crime records for analysis.
+- Exploring the dataset in a dedicated EDA notebook.
+- Comparing numeric, text and combined feature approaches.
+- Building Spark MLlib pipelines with Random Forest and cross-validation.
+- Documenting the group work in a report and Databricks export.
 
-| Step | File |
+## Workflow
+
+```mermaid
+flowchart TD
+    A["Crime records"] --> B["Cleaning and schema preparation"]
+    B --> C["Exploratory analysis"]
+    B --> D["Feature and model experiments"]
+    D --> E["Classification evaluation"]
+```
+
+The task classifies recorded incident categories. It is not demonstrated forecasting of future crime.
+
+## Explore the work
+
+| Stage | Artifact | What to inspect |
+|---|---|---|
+| Cleaning | [cleaning.ipynb](cleaning.ipynb) | Original preparation workflow |
+| Exploration | [eda.ipynb](eda.ipynb) | Saved exploratory analysis |
+| Feature comparison | [feature_analysis.ipynb](feature_analysis.ipynb) | Numeric, text and combined configurations |
+| Modelling | [modelling.ipynb](modelling.ipynb) | Maintained model entry point |
+| Implementation | [crime_pipeline.py](crime_pipeline.py) | Training and evaluation |
+| Submission | [Group report](reports/group-21-report.pdf) | Original project narrative |
+| Original experiments | [archive/](archive/) | Historical modelling outputs |
+
+## Reading the evidence
+
+The report and original notebooks document the submitted coursework. The maintained pipeline subsequently addresses preprocessing leakage, feature alignment and class-metric calculation. Historical scores are not presented as results of a fresh run of the corrected implementation.
+
+**Start with the report**, then follow the [notebook guide](docs/NOTEBOOKS.md). This is group coursework; a detailed individual contribution split has not been established from the upload.
+
+## Repository guide
+
+| Location | Contents |
 |---|---|
-| 1. Cleaning | [cleaning.ipynb](cleaning.ipynb) |
-| 2. Exploratory analysis | [eda.ipynb](eda.ipynb) |
-| 3. Feature comparison | [feature_analysis.ipynb](feature_analysis.ipynb) |
-| 4. Random Forest modelling | [modelling.ipynb](modelling.ipynb) |
+| Root notebooks | Cleaning, EDA and maintained modelling entry points |
+| [crime_pipeline.py](crime_pipeline.py) | Shared Spark modelling implementation |
+| [reports/](reports/) | Submitted group report |
+| [databricks/](databricks/) | Original DBC export |
+| [archive/](archive/) | Earlier feature/modelling notebooks |
+| [docs/](docs/) | Walkthrough, inventory and technical notes |
 
-[Group report](Project_Group_21_report.pdf) · [Databricks archive](Group_Rory/Group_Rory/chicago_clean.dbc) · [Inventory](docs/INVENTORY.md) · [Reproduction review](docs/REPRODUCIBILITY.md)
+<details>
+<summary>Setup and future work</summary>
 
-## Setup
+```bash
+python -m pip install -r requirements.txt
+python crime_pipeline.py /path/to/crimes.csv --mode numeric
+```
 
-Use a Spark/Databricks environment or a compatible local Java/PySpark installation. requirements.txt lists candidate Python dependencies; no original environment lock was uploaded.
+Requires a compatible Java/PySpark environment and the source CSV. Text modes are retrospective experiments because descriptions may encode the target category.
 
-The crime CSV is not included. Obtain the source dataset and set paths in each notebook. modelling.ipynb expects part.csv; feature_analysis.ipynb references a Colab-specific CSV path. The two notebooks also expect different column naming conventions (spaces versus underscores).
+Future work: restore the exact dataset extract, document the cleaning-to-model handoff and rerun the corrected pipeline.
 
-## Modelling scope
-
-modelling.ipynb predicts the recorded crime category using incident attributes with a Random Forest pipeline and cross-validation. It includes description and arrest-related fields: this is incident classification, not demonstrated prediction of future crimes.
-
-Saved outputs and the report are historical experiment evidence. No performance number is presented here as independently reproduced.
-
-Original notebook paths are preserved because working-directory and schema assumptions need to be reconciled before refactoring.
+[Implementation notes](docs/REPAIRS.md) · [Initial review](docs/REPRODUCIBILITY.md)
+</details>
