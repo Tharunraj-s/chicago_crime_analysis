@@ -1,0 +1,7 @@
+# Candidate dependencies; align PySpark and Java with your execution platform.
+pyspark
+pandas
+numpy
+matplotlib
+seaborn
+jupyter
